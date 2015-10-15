@@ -25,7 +25,7 @@ FOLDERPREFIX:=$(GCC_FOLDER)/bin
 PREFIX:=$(FOLDERPREFIX)/xtensa-lx106-elf-
 CC:=$(PREFIX)gcc
 
-CFLAGS:=-mlongcalls -I$(SDK)/include -Imyclib -Iinclude -Iuser -Os -I$(SDK)/include/ -Icommon -DICACHE_FLASH
+CFLAGS:=-mlongcalls -I$(SDK)/include -Imyclib -Iinclude -Iuser -Os -I$(SDK)/include/ -Icommon -DICACHE_FLASH -std=gnu99 -Wno-implicit-function-declaration
 
 #	   \
 #
