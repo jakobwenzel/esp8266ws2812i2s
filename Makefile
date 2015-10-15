@@ -16,11 +16,7 @@ SRCS:=driver/uart.c \
 	user/ws2812_i2s.c \
 	user/user_main.c 
 
-GCC_FOLDER:=~/esp8266/esp-open-sdk/xtensa-lx106-elf
-ESPTOOL_PY:=~/esp8266/esptool/esptool.py
-FW_TOOL:=~/esp8266/other/esptool/esptool
-SDK:=/home/cnlohr/esp8266/esp_iot_sdk_v1.3.0
-PORT:=/dev/ttyUSB0
+include Makefile_paths
 #PORT:=/dev/ttyACM0
 
 XTLIB:=$(SDK)/lib
