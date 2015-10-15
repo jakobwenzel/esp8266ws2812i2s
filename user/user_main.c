@@ -21,7 +21,8 @@ static volatile os_timer_t some_timer;
 static struct espconn *pUdpServer;
 uint8_t last_leds[512*3];
 int last_led_count;
-
+char light_mode;
+int frame;
 
 //int ICACHE_FLASH_ATTR StartMDNS();
 
@@ -45,6 +46,18 @@ os_event_t    procTaskQueue[procTaskQueueLen];
 static void ICACHE_FLASH_ATTR procTask(os_event_t *events)
 {
 	CSTick( 0 );
+
+	if (light_mode) {
+
+		int arrsize = last_led_count*3;
+		for (int i=0;i<arrsize;i++) {
+			last_leds[i]=frame;
+		}
+		frame++;
+		ws2812_push( last_leds, arrsize );
+
+	}
+
 	system_os_post(procTaskPrio, 0, 0 );
 }
 
@@ -60,18 +73,21 @@ static void ICACHE_FLASH_ATTR
 udpserver_recv(void *arg, char *pusrdata, unsigned short len)
 {
 	struct espconn *pespconn = (struct espconn *)arg;
+	if (light_mode)
+		uart0_sendStr("i");
+	else {
+		uart0_sendStr("X");
 
-	uart0_sendStr("X");
+		ws2812_push( pusrdata+3, len-3 );
 
-	ws2812_push( pusrdata+3, len-3 );
-
-	len -= 3;
-	if( len > sizeof(last_leds) + 3 )
-	{
-		len = sizeof(last_leds) + 3;
+		len -= 3;
+		if( len > sizeof(last_leds) + 3 )
+		{
+			len = sizeof(last_leds) + 3;
+		}
+		ets_memcpy( last_leds, pusrdata+3, len );
+		last_led_count = len / 3;
 	}
-	ets_memcpy( last_leds, pusrdata+3, len );
-	last_led_count = len / 3;
 }
 
 void ICACHE_FLASH_ATTR charrx( uint8_t c )

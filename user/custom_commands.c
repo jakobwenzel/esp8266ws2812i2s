@@ -4,6 +4,7 @@
 
 extern uint8_t last_leds[512*3];
 extern int last_led_count;
+extern char light_mode;
 
 
 int ICACHE_FLASH_ATTR CustomCommand(char * buffer, int retsize, char *pusrdata, unsigned short len)
@@ -30,6 +31,12 @@ int ICACHE_FLASH_ATTR CustomCommand(char * buffer, int retsize, char *pusrdata, 
 			*(buffend++) = tohex1( samp>>4 );
 			*(buffend++) = tohex1( samp&0x0f );
 		}
+		return buffend-buffer;
+	}
+	case 'm': case 'M': //Mode
+	{
+		light_mode = pusrdata[2]-'0';		
+		buffend += ets_sprintf(buffend, "CM:%d",light_mode );
 		return buffend-buffer;
 	}
 
