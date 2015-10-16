@@ -14,7 +14,8 @@ SRCS:=driver/uart.c \
 	common/mfs.c \
 	user/custom_commands.c \
 	user/ws2812_i2s.c \
-	user/user_main.c 
+	user/user_main.c \
+	user/lights_gen.c
 
 include Makefile_paths
 #PORT:=/dev/ttyACM0

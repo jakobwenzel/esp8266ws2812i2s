@@ -11,6 +11,7 @@
 #include "ws2812_i2s.h"
 #include "commonservices.h"
 #include <mdns.h>
+#include "lights_gen.h"
 
 #define PORT 7777
 
@@ -22,7 +23,7 @@ static struct espconn *pUdpServer;
 uint8_t last_leds[512*3];
 int last_led_count;
 char light_mode;
-int frame;
+int tickCount;
 
 //int ICACHE_FLASH_ATTR StartMDNS();
 
@@ -48,13 +49,14 @@ static void ICACHE_FLASH_ATTR procTask(os_event_t *events)
 	CSTick( 0 );
 
 	if (light_mode) {
+		//TODO enable interrupts for i2s peripheral to get notified when transfer is finished instead of having to count
+		tickCount++;
+		if (tickCount==1024) {
 
-		int arrsize = last_led_count*3;
-		for (int i=0;i<arrsize;i++) {
-			last_leds[i]=frame;
+			update_lights();
+			
+			tickCount=0;
 		}
-		frame++;
-		ws2812_push( last_leds, arrsize );
 
 	}
 

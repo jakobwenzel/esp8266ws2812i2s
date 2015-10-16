@@ -122,14 +122,14 @@ int main( int argc, char ** argv )
 //			hex=0xffffff;
 //			hex = HSVtoHEX( i*(1/12.) + frame*(1./48.), 1, 1.0 );
 //			hex = (((frame+i)%lights)>(lights-2))?0xffffff:0; //The worm.
-			hex = HSVtoHEX( i*.03 - frame*.04, 1,  (((((-i<<3)%256) - ((frame<<3)%256)+256)%256) ) /256.0*0.9-0.1); //Long, smooth, transitioning. 1.0 
+//			hex = HSVtoHEX( i*.03 - frame*.04, 1,  (((((-i<<3)%256) - ((frame<<3)%256)+256)%256) ) /256.0*0.9-0.1); //Long, smooth, transitioning. 1.0 
 
 
 			//For wall art.
 
 //			hex = 0x404040;
 
-			hex = HSVtoHEX( i*.05 + frame*.01, 1, 1.0 ); //0.50 = overload. 0.45 = overheat? =0.40 = HOT
+			hex = HSVtoHEX( i*.05 + frame*.01, 1, 0.1 ); //0.50 = overload. 0.45 = overheat? =0.40 = HOT
 
 //			hex = (((frame+i)%186)>160)?0xff8f8f:0; //The worm.
 //			hex = (((frame+i)%186)>130)?0x0000ff:0; //The red worm.
