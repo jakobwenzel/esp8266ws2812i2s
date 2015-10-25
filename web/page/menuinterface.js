@@ -322,6 +322,12 @@ function MakeDragDrop( divname, callback )
 }
 
 
+function PatternClick() {
+	var val = $('input[name=pattern]:checked').val();
+	if (val!=undefined) {
+		QueueOperation("CM"+val);
+	}
+}
 
 
 

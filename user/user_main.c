@@ -50,10 +50,11 @@ static void ICACHE_FLASH_ATTR procTask(os_event_t *events)
 
 	if (light_mode) {
 		//TODO enable interrupts for i2s peripheral to get notified when transfer is finished instead of having to count
+		pattern_tick(tickCount);
 		tickCount++;
-		if (tickCount==1024) {
+		if (tickCount==512) {
 
-			update_lights();
+			pattern_update();
 			
 			tickCount=0;
 		}

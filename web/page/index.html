@@ -24,6 +24,17 @@ td { vertical-align: top; }
 <table id="MainMenu">
 
 <tbody>
+<tr><td width=1>
+<input type=submit onclick="ShowHideEvent( 'Patterns' );" value="Patterns"></td><td>
+<div id=Patterns class="collapsible">
+<table border=1><tr><td>
+<label for="pat-network"><input type="radio" name="pattern" id="pat-network" value="0" onclick="PatternClick()" /> Network</label></p>
+<label for="pat-worm"><input type="radio" name="pattern" id="pat-worm" value="1" onclick="PatternClick()" /> Worm</label></p>
+<label for="pat-test"><input type="radio" name="pattern" id="pat-test" value="2" onclick="PatternClick()" /> Test</label></p>
+<label for="pat-fav"><input type="radio" name="pattern" id="pat-fav" value="3" onclick="PatternClick()" /> Fav</label></p>
+</div></td></tr></table></td></tr>
+
+
 
 <tr><td width=1>
 <input type=submit onclick="ShowHideEvent( 'Introduction' );" value="Introduction"></td><td>

@@ -129,7 +129,7 @@ int main( int argc, char ** argv )
 
 //			hex = 0x404040;
 
-			hex = HSVtoHEX( i*.05 + frame*.01, 1, 0.1 ); //0.50 = overload. 0.45 = overheat? =0.40 = HOT
+//			hex = HSVtoHEX( i*.05 + frame*.01, 1, 0.05 ); //0.50 = overload. 0.45 = overheat? =0.40 = HOT
 
 //			hex = (((frame+i)%186)>160)?0xff8f8f:0; //The worm.
 //			hex = (((frame+i)%186)>130)?0x0000ff:0; //The red worm.
@@ -137,7 +137,7 @@ int main( int argc, char ** argv )
 //			hex = HSVtoHEX( i*.00500 + ((int)(frame*0.42))*.17, 1, 0.40 ); //Fiesta
 
 			//and my favorite:
-//			hex = HSVtoHEX( i*.001 - frame*.001, 1,  ((((i%256) - ((frame>>1)%256)+256)%256) ) /256.0*1.5-0.1); //Long, smooth, transitioning. 1.0 overloads.  Trying 0.9. If 0.9 works, should back off.
+			hex = HSVtoHEX( i*.001 - frame*.001, 1,  ((((i%256) - ((frame>>1)%256)+256)%256) ) /256.0*1.5-0.1); //Long, smooth, transitioning. 1.0 overloads.  Trying 0.9. If 0.9 works, should back off.
 
 //			hex = HSVtoHEX( i*0.005376344 - frame*.001, 1.3,  1.0); //Long, smooth, transitioning. full-brigth
 

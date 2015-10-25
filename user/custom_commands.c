@@ -35,7 +35,7 @@ int ICACHE_FLASH_ATTR CustomCommand(char * buffer, int retsize, char *pusrdata, 
 	}
 	case 'm': case 'M': //Mode
 	{
-		light_mode = pusrdata[2]-'0';		
+		light_mode = pusrdata[2]-'0';
 		buffend += ets_sprintf(buffend, "CM:%d",light_mode );
 		return buffend-buffer;
 	}
